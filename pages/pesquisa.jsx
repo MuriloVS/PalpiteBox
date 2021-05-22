@@ -1,7 +1,22 @@
 import React from 'react';
-import Link from 'next/link';
 
 function PesquisaPage() {
+  const save = async () => {
+    const form = {
+      Nome: 'Murilo',
+      Email: 'm@m.com',
+    };
+    try {
+      const response = await fetch('/api/save', {
+        method: 'POST',
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {}
+  };
+
   return (
     <div>
       <div>
@@ -42,6 +57,12 @@ function PesquisaPage() {
             type='text'
             className='block h-8 mx-auto w-1/5 bg-blue-100 rounded-lg shadow-lg'
           ></input>
+          <button
+            onClick={save}
+            className='rounded-lg shadow-lg mt-8 w-56 p-4 bg-blue-200 hover:bg-blue-300 font-bold'
+          >
+            Salvar
+          </button>
         </div>
       </div>
     </div>

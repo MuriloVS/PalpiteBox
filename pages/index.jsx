@@ -1,7 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
+import useSWR from 'swr';
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 function HomePage() {
+  const { data, error } = useSWR('/api/get-promo', fetcher);
   return (
     <div>
       <p className='m-4 text-center'>
@@ -14,7 +18,10 @@ function HomePage() {
           <Link href='/pesquisa'>Dar opinião ou sugestão</Link>
         </button>
       </div>
-      <p className='m-4 text-center'>Mensagem do desconto</p>
+      {!data && <p>Carregando...</p>}
+      {!error && data && data.showCoupon && (
+        <p className='m-4 text-center'>{data.message}</p>
+      )}
     </div>
   );
 }
