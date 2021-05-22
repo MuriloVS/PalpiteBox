@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function PesquisaPage() {
-  const save = async () => {
-    const form = {
-      Nome: 'Murilo',
-      Email: 'm@m.com',
-    };
+  const [form, setForm] = useState({
+    Nome: '',
+    Whatsapp: '',
+    Email: '',
+  });
+
+  const onChange = (evt) => {
+    // necessário guardar em cache o valor antes de usar
+    const value = evt.target.value;
+    const key = evt.target.name;
+    setForm((old) => ({
+      ...old,
+      [key]: value,
+    }));
+  };
+
+  async function save() {
     try {
       const response = await fetch('/api/save', {
         method: 'POST',
@@ -15,7 +27,7 @@ function PesquisaPage() {
       const data = await response.json();
       console.log(data);
     } catch (error) {}
-  };
+  }
 
   return (
     <div>
@@ -33,29 +45,42 @@ function PesquisaPage() {
         <div className='py-2'>
           <label className='px-2 font-bold'>Seu nome:</label>
           <input
+            name='Nome'
+            onChange={onChange}
+            value={form.Nome}
+            placeholder='Nome'
             type='text'
-            className='block h-8 mx-auto w-1/5 bg-blue-100 rounded-lg shadow-lg'
+            className='block h-8 mx-auto md:w-1/5 sm:w-4/5 bg-blue-100 rounded-lg shadow-lg'
           ></input>
         </div>
         <div className='py-2'>
           <label className='px-2 font-bold'>Seu e-mail:</label>
           <input
+            name='Email'
+            onChange={onChange}
+            value={form.Email}
+            placeholder='Email'
             type='e-mail'
-            className='block h-8 mx-auto w-1/5 bg-blue-100 rounded-lg shadow-lg'
+            className='block h-8 mx-auto md:w-1/5 sm:w-4/5 bg-blue-100 rounded-lg shadow-lg'
           ></input>
         </div>
         <div className='py-2'>
           <label className='px-2 font-bold'>Seu whats:</label>
           <input
+            name='Whatsapp'
+            onChange={onChange}
+            value={form.Whatsapp}
+            placeholder='Whatsapp'
             type='text'
-            className='block h-8 mx-auto w-1/5 bg-blue-100 rounded-lg shadow-lg'
+            className='block h-8 mx-auto md:w-1/5 sm:w-4/5 bg-blue-100 rounded-lg shadow-lg'
           ></input>
         </div>
         <div className='py-2'>
-          <label className='px-2 font-bold'>Sua sugestão ou crítica:</label>
+          <label className='px-2 font-bold'>Sugestão ou crítica:</label>
           <input
+            placeholder='Sugestão/Crítica'
             type='text'
-            className='block h-8 mx-auto w-1/5 bg-blue-100 rounded-lg shadow-lg'
+            className='block h-8 mx-auto md:w-1/5 sm:w-4/5 bg-blue-100 rounded-lg shadow-lg'
           ></input>
           <button
             onClick={save}
