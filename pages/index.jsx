@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import useSWR from 'swr';
+import PageTitle from '../components/PageTitle';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -8,6 +9,7 @@ function HomePage() {
   const { data, error } = useSWR('/api/get-promo', fetcher);
   return (
     <div>
+      <PageTitle title='Home' />
       <p className='m-4 text-center'>
         O restaurante X sempre busca por atender da melhor maneira seus
         clientes.

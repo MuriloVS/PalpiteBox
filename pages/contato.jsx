@@ -1,9 +1,10 @@
 import React from 'react';
-import Link from 'next/link';
+import PageTitle from '../components/PageTitle';
 
 function ContatoPage() {
   return (
     <div>
+      <PageTitle title='Contato' />
       <h1>Contato Page</h1>
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PageTitle from '../components/PageTitle';
 
 function PesquisaPage() {
   const notas = [0, 1, 2, 3, 4, 5];
@@ -38,6 +39,7 @@ function PesquisaPage() {
 
   return (
     <div>
+      <PageTitle title='Pesquisa' />
       <div>
         <h1 className='font-bold my-4 text-center text-2xl'>
           Críticas e Sugestões
