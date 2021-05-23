@@ -38,7 +38,7 @@ export default async (req, res) => {
       Email: user.Email,
       Cupom,
       Data: RetornaData(),
-      Nota: 5,
+      Nota: user.Nota,
       Promo,
     });
 

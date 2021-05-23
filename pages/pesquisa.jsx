@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 
 function PesquisaPage() {
+  const notas = [0, 1, 2, 3, 4, 5];
+
   const [form, setForm] = useState({
     Nome: '',
     Whatsapp: '',
     Email: '',
+    Nota: 0,
   });
 
   const [sucess, setSucess] = useState(false);
@@ -47,7 +50,7 @@ function PesquisaPage() {
       </div>
 
       {!sucess && (
-        <div className='items-center'>
+        <div>
           <div className='py-2'>
             <label className='px-2 font-bold'>Seu nome:</label>
             <input
@@ -62,6 +65,7 @@ function PesquisaPage() {
           <div className='py-2'>
             <label className='px-2 font-bold'>Seu e-mail:</label>
             <input
+              required
               name='Email'
               onChange={onChange}
               value={form.Email}
@@ -88,13 +92,32 @@ function PesquisaPage() {
               type='text'
               className='block h-8 mx-auto md:w-1/5 sm:w-4/5 bg-blue-100 rounded-lg shadow-lg'
             ></input>
-            <button
-              onClick={save}
-              className='rounded-lg shadow-lg mt-8 w-56 p-4 bg-blue-200 hover:bg-blue-300 font-bold'
-            >
-              Salvar
-            </button>
           </div>
+          <div className='mt-4'>
+            <label className='px-2 font-bold'>Nota:</label>{' '}
+          </div>
+
+          <div>
+            {notas.map((nota) => {
+              return (
+                <label className='inline-block mx-2 mt-2'>
+                  {nota} <br />
+                  <input
+                    type='radio'
+                    name='Nota'
+                    value={nota}
+                    onChange={onChange}
+                  />
+                </label>
+              );
+            })}
+          </div>
+          <button
+            onClick={save}
+            className='rounded-lg shadow-lg mt-8 w-56 p-4 bg-blue-200 hover:bg-blue-300 font-bold'
+          >
+            Salvar
+          </button>
         </div>
       )}
       {sucess && (
