@@ -27,12 +27,12 @@ export function RetornaCupom() {
   } else if (mili < 100) {
     mili = `0${mili}`;
   }
-
-  const cupom = parseInt(`${dia}${hora}${min}${seg}${mili}`)
+  const random = parseInt(Math.random() * 10).toString();
+  const cupom = parseInt(`${random}${dia}${hora}${min}${seg}${mili}`)
     .toString(16)
     .toUpperCase();
 
-  return cupom.substr(0, 5) + '-' + cupom.substr(5, 10);
+  return cupom.substr(0, 5) + '-' + cupom.substr(5, 11);
 }
 
 export default RetornaData;

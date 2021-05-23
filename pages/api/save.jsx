@@ -43,7 +43,13 @@ export default async (req, res) => {
     });
 
     // enviando os dados para a planilha
-    res.end(req.body);
+    res.end(
+      JSON.stringify({
+        showCupom: Cupom !== '',
+        Cupom,
+        Promo,
+      })
+    );
   } catch (error) {
     console.log(error);
     res.end('error');
