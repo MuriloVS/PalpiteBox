@@ -87,18 +87,9 @@ function PesquisaPage() {
               className='block h-8 mx-auto md:w-1/5 sm:w-4/5 bg-blue-100 rounded-lg shadow-lg'
             ></input>
           </div>
-          <div className='py-2'>
-            <label className='px-2 font-bold'>Sugestão ou crítica:</label>
-            <input
-              placeholder='Sugestão/Crítica'
-              type='text'
-              className='block h-8 mx-auto md:w-1/5 sm:w-4/5 bg-blue-100 rounded-lg shadow-lg'
-            ></input>
-          </div>
           <div className='mt-4'>
             <label className='px-2 font-bold'>Nota:</label>{' '}
           </div>
-
           <div>
             {notas.map((nota) => {
               return (
