@@ -1,4 +1,5 @@
 import RetornaData, { RetornaCupom } from '../../utils/data';
+import fromBase64 from '../../utils/base64';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 
 const doc = new GoogleSpreadsheet(process.env.SHEET_ID);
@@ -7,7 +8,7 @@ export default async (req, res) => {
   try {
     await doc.useServiceAccountAuth({
       client_email: process.env.SHEET_EMAIL,
-      private_key: process.env.SHEET_KEY,
+      private_key: fromBase64(process.env.SHEET_KEY),
     });
     await doc.loadInfo();
 
